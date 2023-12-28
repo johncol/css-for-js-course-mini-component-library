@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-type ButtonVariant = "info" | "danger";
+type ButtonVariant = "default" | "info" | "danger";
 
 type HTMLButtonProps = React.ComponentPropsWithoutRef<"button">;
 
@@ -10,8 +10,11 @@ type StyledButtonProps = HTMLButtonProps & {
   variant?: ButtonVariant;
 };
 
-export const SampleButton: React.FC<StyledButtonProps> = (props) => {
-  return <StyledButton {...props} />;
+export const SampleButton: React.FC<StyledButtonProps> = ({
+  variant,
+  ...props
+}) => {
+  return <StyledButton {...props} variant={variant ?? "default"} />;
 };
 
 const StyledButton = styled.button<StyledButtonProps>`
