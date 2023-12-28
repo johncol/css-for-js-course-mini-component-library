@@ -1,3 +1,9 @@
+# css-for-js-course-mini-component-library
+
+This repo is the solution to the challenged proposed in https://github.com/css-for-js/mini-component-library which consists of creating 3 reusable components following some of the practices of the course.
+
+## Bootstrapped Content Below
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
