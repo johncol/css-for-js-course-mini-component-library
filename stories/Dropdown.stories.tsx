@@ -1,12 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Dropdown, DropdownOption } from "../app/components/Dropdown";
 import { useEffect, useState } from "react";
+import { CustomDropdownProps, Dropdown } from "../app/components/Dropdown";
 
-type DropdownWrapperProps = {
-  value: string;
-  options: DropdownOption[];
-};
+type DropdownWrapperProps = Omit<CustomDropdownProps, "onChange">;
 
 const DropdownWrapper = (props: DropdownWrapperProps) => {
   const [value, setValue] = useState(props.value);
@@ -15,7 +12,7 @@ const DropdownWrapper = (props: DropdownWrapperProps) => {
   }, [props.value]);
   return (
     <Dropdown
-      options={props.options}
+      {...props}
       value={value}
       onChange={(option) => setValue(option as string)}
     />
@@ -42,6 +39,12 @@ const meta = {
         type: "array",
       },
     },
+    placeholder: {
+      description: "Placeholder text to display when no option is selected",
+      control: {
+        type: "text",
+      },
+    },
   },
 } satisfies Meta<typeof Dropdown>;
 export default meta;
@@ -49,23 +52,30 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const DUMMY_OPTIONS = [
-  { value: "", label: "" },
   { value: "option1", label: "Option 1" },
   { value: "option2", label: "Option 2" },
   { value: "option3", label: "Option 3" },
   { value: "long-option", label: "Some Really Long Option" },
 ];
 
-export const OptionSelected: Story = {
+export const NoOptionSelected: Story = {
   args: {
-    value: "option1",
+    value: "",
     options: DUMMY_OPTIONS,
   },
 };
 
-export const NoOptionSelected: Story = {
+export const WithPlaceholder: Story = {
   args: {
     value: "",
+    options: DUMMY_OPTIONS,
+    placeholder: "Select an option",
+  },
+};
+
+export const OptionSelected: Story = {
+  args: {
+    value: "option1",
     options: DUMMY_OPTIONS,
   },
 };

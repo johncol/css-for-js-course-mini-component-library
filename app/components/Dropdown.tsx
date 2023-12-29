@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import arrow from "../../public/arrow.svg";
 import { ArrowDown } from "./icons/ArrowDown";
 
 export type DropdownOption = {
@@ -7,10 +6,11 @@ export type DropdownOption = {
   label: string;
 };
 
-type CustomDropdownProps = {
+export type CustomDropdownProps = {
   value: string;
   onChange: (value: string) => void;
   options: DropdownOption[];
+  placeholder?: string;
 };
 
 type NativeDropdownProps = React.ComponentProps<"select">;
@@ -21,6 +21,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   value,
   onChange,
   options,
+  placeholder,
   ...props
 }) => {
   return (
@@ -30,16 +31,39 @@ export const Dropdown: React.FC<DropdownProps> = ({
         value={value}
         onChange={(event) => onChange(event.target.value)}
       >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
+        <PlaceholderOption value={value} placeholder={placeholder} />
+        <OptionsList options={options} />
       </StyledSelect>
       <IconWrapper>
         <ArrowDown />
       </IconWrapper>
     </Wrapper>
+  );
+};
+
+const OptionsList: React.FC<{ options: DropdownOption[] }> = ({ options }) => {
+  return (
+    <>
+      {options.map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </>
+  );
+};
+
+const PlaceholderOption: React.FC<{ value: string; placeholder?: string }> = ({
+  value,
+  placeholder,
+}) => {
+  if (value) {
+    return null;
+  }
+  return (
+    <option value="" disabled>
+      {placeholder ?? "--"}
+    </option>
   );
 };
 
