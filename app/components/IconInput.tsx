@@ -41,13 +41,11 @@ const IconWrapper = styled.div<{ scale: Scale }>`
   top: 0;
   bottom: 0;
   left: 4px;
+  margin: auto 0;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 100%;
-  width: ${({ scale }) => (scale === "small" ? "14px" : "20px")};
+  --size: ${({ scale }) => (scale === "small" ? "14px" : "20px")};
+  height: var(--size);
+  width: var(--size);
 
   color: var(--font-color);
   transition: color 0.1s linear;
