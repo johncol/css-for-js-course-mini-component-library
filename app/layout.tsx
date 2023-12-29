@@ -20,7 +20,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap"
           rel="stylesheet"
         />
       </head>

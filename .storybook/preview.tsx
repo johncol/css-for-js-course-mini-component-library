@@ -1,19 +1,10 @@
 import type { Preview } from "@storybook/react";
-import React from "react";
 
-import { ResetStyles } from "../app/global/ResetStyles";
-import { GlobalStyles } from "../app/global/GlobalStyles";
-
-const IncludeAppGlobalStyles = (Story) => (
-  <>
-    <Story />
-    <ResetStyles />
-    <GlobalStyles />
-  </>
-);
+import { IncludeAppGlobalStyles } from "./decorators/IncludeAppGlobalStyles";
+import { IncludeFonts } from "./decorators/IncludeFonts";
 
 const preview: Preview = {
-  decorators: [IncludeAppGlobalStyles],
+  decorators: [IncludeFonts, IncludeAppGlobalStyles],
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
